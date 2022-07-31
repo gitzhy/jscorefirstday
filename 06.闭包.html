@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>闭包</title>
+  </head>
+  <body>
+    <!-- 
+      闭包：是函数的被动技能，为了保障函数永远都能成功运行，所以把其他的函数作用于保存在自身的scopes里
+
+      为什么要知道闭包的概念？
+      1.JS底层的经典设计之一
+      2.利用闭包机制 来解决全局变量污染的问题/为函数制作私有的变量
+     -->
+    <script>
+      (function () {
+        var a = 10;
+        var b = 20;
+
+        function x() {
+          var b = 30; //就近原则 用 b=30
+          var c = 40;
+
+          function y() {
+            var d = 50;
+
+            // 函数scopes属性: 存储 `使用到的` `来自其他作用域`的变量 所在的作用域 -- 为什么? 防止其他作用域自动销毁 
+            function z() {
+              var e = 60;
+              console.log(a, b, c, d, e);
+            }
+            console.dir(z); //z 函数的scopes里存了什么？ 10 30 40 50
+          }
+          y();
+        }
+        x();
+      })();
+    </script>
+  </body>
+</html>

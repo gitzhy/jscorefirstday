@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>arguments</title>
+  </head>
+  <body>
+    <!-- arguments:函数中隐式自带的变量 存储函数在被调用时 收到的所有实参 -->
+    <!-- 适合的场景：配合实现那些参数数量不固定的函数 -->
+    <script>
+      // 制作一个函数add 能够计算出任意数量个参数的总和
+      function add() {
+        // 为了应对不固定数量传参的场景 为函数提供了一个隐藏的变量 arguments
+        // console.log("arguments:", arguments);
+        var sum = 0;
+        for (var i = 0; i < arguments.length; i++) {
+          sum += arguments[i];
+        }
+        return sum;
+      }
+      // 使用时：
+      console.log(add(10, 20));
+      console.log(add(10, 20, 44, 55));
+      console.log(add(10, 20, 223, 34, 45, 65));
+    </script>
+  </body>
+</html>

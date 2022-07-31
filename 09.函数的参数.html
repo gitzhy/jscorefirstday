@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数的参数</title>
+  </head>
+  <body>
+    <h1 id="time"></h1>
+
+    <script>
+      // 函数：是最基本的封装方式 目的是复用代码
+      // 封装：把一些零散的东西装在一起，封箱 形成一个整体
+      // 复用：重复使用
+
+      // 函数根据形参的个数会有多种写法
+
+      // 获取当前的日期
+      function showDate() {
+        var now = new Date();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        return `${hour}:${minute}:${second}`;
+      }
+
+      // 定时器：定时触发
+      setInterval(() => {
+        var d = showDate();
+        // console.log("d:", d);
+        // time.innerHTML = d;
+      }, 1000);
+
+      // 单参数：制作一个abs函数，返回参数的绝对值
+      function abs(num) {
+        // if (num > 0) {
+        //   return num;
+        // } else {
+        //   return -num;
+        // }
+        return num > 0 ? num : -num;
+      }
+      console.log(abs(10));
+      console.log(abs(-10));
+
+      // 多参数：任意两个数字之和
+      function add(x, y) {
+        return x + y;
+      }
+      console.log(add(10, 20));
+    </script>
+  </body>
+</html>

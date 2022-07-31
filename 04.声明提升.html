@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>声明提升 11:18</title>
+  </head>
+
+  <body>
+    <script>
+      // 避免全局变量污染, 开局先书写一个 匿名函数自调用
+      // 注意: 匿名函数前通过分号和上一行代码间隔.  没有上一行就不用写分号
+      (function () {
+        // 代码写在函数中, 所有声明的变量都在函数作用域, 不会污染全局
+
+        // 正常理解:  除了JS以外都是 1111 2222
+        // JS独有的 `垃圾` 设定: 导致程序员使用时特别难受
+        // JS引擎会隐式把声明代码进行提升, 再执行提升后的代码
+        function show() {
+          console.log(1111);
+        }
+        show();
+
+        // 函数: 声明和赋值密不可分, 是一体的
+        function show() {
+          console.log(2222);
+        }
+        show();
+      })();
+    </script>
+
+    <script>
+      (function () {
+        // var a = 5 //这是两行代码的合写
+        // var a;  a = 5;
+        // 声明提升: 提升声明的代码
+        var a; //声明操作: 声明变量a
+        // 赋值操作: a = 函数
+        a = function () {
+          console.log(1);
+        };
+        a();
+
+        var a;
+        a = function () {
+          console.log(2);
+        };
+        a();
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var a = function () {
+          console.log(1);
+        };
+        a();
+
+        var a = function () {
+          console.log(2);
+        };
+        a();
+
+        function a() {
+          console.log(3);
+        }
+        a();
+      })();
+
+      // 简化写法
+      var a = function () {};
+
+      // 真正的代码
+      var a;
+      a = function () {};
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>局部作用域 10:14</title>
+  </head>
+
+  <body>
+    <!-- JS有两个作用域: 全局 和 局部 -->
+    <!-- 全局: 在浏览器中就是 window 对象 -->
+    <!-- 局部作用域: 函数运行时所产生的对象 -->
+    <script>
+      // 函数有两种状态: 静态 + 触发态
+
+      // 函数声明后, 处于静止状态: 必须通过调用 -- 函数() 才能触发函数中的代码
+      function show() {
+        // 变量 a b c 存储在特殊的作用域对象: 函数作用域
+        // 函数在运行期间 临时 生成的作用域. 运行结束时会被销毁 来节省内存
+
+        // 浏览器提供了断点调试功能, 可以让代码 中断 在某个时间点, 来查看对应的情况
+        var a = 10;
+        var b = 20;
+        var c = 30;
+        // 插件名: JavaScript(ES6) code snippets
+        // clg
+        console.log(a, b, c);
+      }
+      // 函数动态: 通过()来触发函数
+      show();
+      show();
+      show();
+    </script>
+  </body>
+</html>

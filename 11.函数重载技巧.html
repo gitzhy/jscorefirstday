@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数重载技巧</title>
+  </head>
+  <body>
+    <script>
+      // 函数重载技巧：可以让函数功能增强 -- 变成多功能函数
+
+      // 例如：制作一个计算双十一 商品折扣价格的函数
+      // 原理：利用if判断参数的个数或类型 来载入不同的逻辑
+      function zhekou(money) {
+        // arguments:保存了函数触发时收到的所有实参
+        // 判定：如果参数有3个就是满减
+        if (arguments.length == 3) {
+          // console.log("长度为3，识别为满减操作", arguments);
+          var man = arguments[1];
+          var jian = arguments[2];
+          if (money >= man) {
+            return money - jian;
+          } else {
+            return money;
+          }
+        }
+        // 如果两个参数
+        if (arguments.length == 2) {
+          // 读取参数2 识别其数据类型 然后判定操作逻辑
+          var x = arguments[1];
+          if (typeof x == "number") {
+            // console.log("识别到数字，进入到折扣模式", arguments);
+            return money * x;
+          }
+          if (typeof x == "string") {
+            if (x == "vip1") return money * 0.8;
+
+            if (x == "vip2") return money * 0.55;
+          }
+        }
+      }
+
+      // 效果：消费3000元
+      console.log(zhekou(3000, 0.7)); //7折价格：2100
+      console.log(zhekou(3000, 0.65)); //65折价格
+      console.log(zhekou(3000, "vip1")); //8折
+      console.log(zhekou(3000, "vip2")); //55折
+      console.log(zhekou(3000, 2000, 500)); //满两千 减五百
+      console.log(zhekou(3000, 2800, 700)); //满两千八 减七百
+    </script>
+  </body>
+</html>

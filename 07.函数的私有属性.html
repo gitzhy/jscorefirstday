@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数的私有属性</title>
+  </head>
+  <body>
+    <script>
+      // 私有：只能自己用 不让别人用
+      (function () {
+        // 希望这个变量是私有的，存储在这个函数内不给别人用
+        // 1.把 pao_money在一个函数作用域中声明，不放在公共区域 -- 用匿名函数快速制作一个私有的作用域
+
+        var pao_eat = (function () {
+          var pao_money = 1000;
+
+          var pao_eat = function () {
+            pao_money -= 50;
+            console.log("吃饭中，剩余金额", pao_money);
+          };
+          return pao_eat;
+        })();
+
+        pao_eat();
+        pao_eat();
+
+        function tao_eat() {
+          pao_money -= 100;
+          console.log("涛哥用泡泡的钱吃:", pao_money);
+        }
+        tao_eat();
+        tao_eat();
+      })();
+    </script>
+  </body>
+</html>

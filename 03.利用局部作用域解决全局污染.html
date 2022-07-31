@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>利用局部作用域解决全局变量污染 10:33</title>
+  </head>
+
+  <body>
+    <script>
+      // 普通写法: 在脚本中声明变量, 会存储在window作用域中, 污染全局
+      var a = 10,
+        b = 20;
+      console.log(a + b); //clg
+
+      // 解决方案: 把代码在函数里执行, 变量自然会存储在函数作用域 而且 函数执行完毕后, 还会释放内存 - 节省内存
+      // 全局window 会一直存在到页面关闭, 存储在这里的数据会一直存活
+
+      // 匿名函数自调用 就是专门应对当前场景的技术
+      // 为什么匿名: 没有复用的需求, 仅仅是为了执行一次 -- 提供一个局部作用域
+      // 注意: 必须和上一行代码之间有分号间隔
+      // 理论上: 脚本中书写代码, 开局就该写一个匿名函数, 然后在这里写其他代码
+      // 现实中: 很多人不知道 或者 懒, 可能不会这么写, 导致大量的全局污染
+
+      // 字体: monaco
+
+      // 匿名函数的固定格式
+      // (function(){})()
+      (function () {
+        var aa = 10;
+        var bb = 20;
+        console.log(aa + bb); // 打开全局对象, 看里面有没有aa 和 bb
+      })();
+
+      // 查看全局中是否有 a 和 b 两个属性
+      console.log("全局:", window);
+    </script>
+  </body>
+</html>

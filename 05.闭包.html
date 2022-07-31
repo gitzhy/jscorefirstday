@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>闭包 14:01</title>
+  </head>
+
+  <body>
+    <script>
+      // 函数分两种状态:  静态 和 动态(调用)
+
+      // 作用域链: 当出现多层作用域嵌套的场景, 如果当前作用域中没有使用的变量, 则到上层查找 -- 就近原则. 优先使用离得最近的
+      var uname = "涛涛";
+
+      function show() {
+        // 局部作用域: 函数在调用时`临时`生成的对象. 函数运行结束后会销毁, 达到节省内存的目的
+        var uname = "泡泡";
+
+        // 作者的设计: 如果一个函数作用域的变量, 例如uname 在另外一个函数中被使用, 为了确保函数能够永远正常运行, 所以作者会让 这个b函数 把用到的变量 uname 所在的作用域保存起来, 防止其释放
+        // scopes: 作用域们 -- 是函数自带的一个属性, 其中会保存函数用到的来自于 外部作用域的变量 所在的作用域
+        // closure: 闭包.  -- 用于形容 这些被函数保存起来的 函数作用域
+        var b = function () {
+          console.log(uname);
+        };
+        // 打印操作有多种: log-输出的结果是美化后的
+        // console.log(b);
+        // dir: 直接打印函数的本体 -- 是个对象类型
+        console.dir(b);
+
+        // b()
+        return b; // show函数调用后的结果
+      }
+
+      var b = show();
+      b(); //问: show函数已经执行完毕, 这个b函数还能打印出uname吗?
+    </script>
+  </body>
+</html>

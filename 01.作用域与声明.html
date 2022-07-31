@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 题目 就是文件名 -->
+    <title>作用域与声明 09:24</title>
+  </head>
+
+  <body>
+    <!-- 目前所有讲解的内容, 都是在 ES6  即JS的第六个版本前的特性 -->
+    <!-- 声明操作: var function -->
+    <!-- var: 通用的, 可以声明变量, 存储任意类型的值 -->
+    <script>
+      // var: 声明一个变量, 存储一个值
+      var a = 10,
+        b = true,
+        c = "凯凯",
+        d = {},
+        e = [];
+      var f = function () {};
+
+      // function: 只能声明函数,  声明一个变量来存储函数
+      function g() {}
+
+      // 什么是作用域?  就是一个具有特殊作用的对象类型 - JS中 万物皆对象
+      // 全局作用域 : 用于存储系统API(函数+变量之类)
+
+      // JS的宿主环境: JS运行在什么环境中,  这个环境就叫宿主
+      // 比如 JS运行在 node.js 平台上,  node.js 就是宿主环境
+      // JS运行在浏览器上, 浏览器就是 JS 的宿主. JS就能使用浏览器的各种功能
+
+      // 推荐安装 live server 插件,  只要右键 -> open with live server
+      // 就能在默认浏览器中开启当前文件
+      // 首次使用, 后台有404错误, 不用管. 刷新就没了
+
+      // window中存放了 浏览器提供的所有 API , 可以通过这里的方法来操作浏览器
+      console.log("window:", window);
+
+      // alert: 是浏览器提供的最基础的弹窗方法, 其存储在window中
+      // window.alert("大家好, 我是alert")
+
+      // 凡是存放在window中的 -- 称为全局对象 或 全局作用域
+      // 由于window是专门存储系统API的对象, 所以也称为 作用域
+      // window. 可以省略
+      alert("大家好, 我是alert");
+
+      // 全局污染: 全局作用域是用来存放系统api的, 如果把我们自己定义的属性放在全局作用域中, 就叫全局污染
+
+      // window是放系统api.
+      // 通过var 在 script中声明的变量, 会存储在window中, 称为 全局污染  -- 把自定义的放在系统api存储的地方, 污染了
+      var aa = 666;
+
+      // 典型的污染: 除了郑浩 都是讲师,  郑浩污染了这个数组
+      // var names = ['成亮', '泡泡', '小新', '铭铭', '郑浩', '文华']
+
+      // 寄生虫 寄生在什么物体上, 这个物体就叫宿主
+      // 王力宏感染了 新冠病毒.. 称  王力宏是 新冠病毒的宿主
+
+      // 局部作用域
+    </script>
+  </body>
+</html>

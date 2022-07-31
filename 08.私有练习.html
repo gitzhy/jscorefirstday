@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>私有练习</title>
+  </head>
+  <body>
+    <script>
+      var a = (function () {
+        var num = 1;
+
+        return function a() {
+          num++;
+          console.log("num:", num);
+        };
+      })();
+      console.dir(a); // 查看其scopes属性
+      a();
+      a();
+      a();
+
+      // 模仿 给b函数也只做一个私有的属性num 初始值100
+      var b = (function () {
+        var num = 100;
+
+        return function b() {
+          num++;
+          console.log("num:", num);
+        };
+      })();
+      b();
+      b();
+
+      // 练习 改造成c私有的num
+      var c = (function () {
+        var num = 1000;
+
+        return function c() {
+          num--;
+          console.log("num:", num);
+        };
+      })();
+      c();
+      c();
+    </script>
+  </body>
+</html>
